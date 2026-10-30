@@ -297,3 +297,31 @@ footer a:hover { color: #fff; transform: translateX(3px); }
   padding: .75rem;
   border-radius: var(--radius);
 }
+
+
+/* =========================================================
+   SEMÁNTICA Y ACCESIBILIDAD
+   ========================================================= */
+
+/* Enlace "Saltar al contenido": solo visible al navegar con teclado */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 1rem;
+  z-index: 2000;
+  background: var(--accent);
+  color: #fff;
+  padding: .75rem 1.25rem;
+  border-radius: 0 0 var(--radius) var(--radius);
+  font-weight: 700;
+  text-decoration: none;
+  transition: top .2s ease;
+}
+.skip-link:focus { top: 0; color: #fff; }
+
+/* El hero ahora es <section>: se evita el padding global de section */
+.hero { padding: 7rem 0 4rem; }
+
+/* Dirección en el footer sin estilo de cursiva */
+footer address { margin-bottom: 0; }
+footer address p { margin-bottom: .5rem; }
