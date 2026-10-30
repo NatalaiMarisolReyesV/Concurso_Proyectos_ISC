@@ -67,3 +67,138 @@ applyTheme(savedTheme || (prefersDark ? "dark" : "light"));
 themeToggle.addEventListener("click", () => {
   applyTheme(root.getAttribute("data-bs-theme") === "dark" ? "light" : "dark");
 });
+
+
+// =========================================================
+// 4. FORMULARIO DE CONTACTO CON VALIDACIÓN EN TIEMPO REAL
+// =========================================================
+const form = document.getElementById("contactForm");
+
+if (form) {
+  // Acepta @tecmm.edu.mx y cualquier subdominio (ej. @zapopan.tecmm.edu.mx)
+  const emailInstitucional = /^[a-z0-9._%+-]+@([a-z0-9-]+\.)*tecmm\.edu\.mx$/i;
+  const soloLetras = /^[A-Za-zÁÉÍÓÚÜÑáéíóúüñ\s.'-]+$/;
+
+  // Cada regla devuelve "" si es válido, o el mensaje de error
+  const reglas = {
+    nombre(campo) {
+      const v = campo.value.trim();
+      if (v === "") return "El nombre es obligatorio.";
+      if (v.length < 3) return "Escribe al menos 3 caracteres.";
+      if (!soloLetras.test(v)) return "El nombre solo puede contener letras.";
+      return "";
+    },
+    correo(campo) {
+      const v = campo.value.trim();
+      if (v === "") return "El correo es obligatorio.";
+      if (!v.includes("@")) return "Falta el símbolo @ en el correo.";
+      if (!emailInstitucional.test(v)) return "Usa tu correo institucional (@zapopan.tecmm.edu.mx).";
+      return "";
+    },
+    tipo(campo) {
+      return campo.value === "" ? "Selecciona un tipo de consulta." : "";
+    },
+    mensaje(campo) {
+      const v = campo.value.trim();
+      if (v === "") return "El mensaje es obligatorio.";
+      if (v.length < 10) return `Escribe al menos 10 caracteres (llevas ${v.length}).`;
+      return "";
+    },
+    aviso(campo) {
+      return campo.checked ? "" : "Debes aceptar el aviso de privacidad.";
+    }
+  };
+
+  const campos = Array.from(form.querySelectorAll("input, select, textarea"));
+
+  function validarCampo(campo) {
+    const error = reglas[campo.name](campo);
+    const contenedor = campo.closest(".mb-3, .mb-4");
+    const mensajeError = contenedor.querySelector(".invalid-feedback");
+
+    mensajeError.textContent = error;
+    campo.classList.toggle("is-invalid", error !== "");
+    campo.classList.toggle("is-valid", error === "");
+    campo.setAttribute("aria-invalid", error !== "");
+    return error === "";
+  }
+
+  // Validar en tiempo real: al escribir, al salir del campo y al cambiar
+  campos.forEach((campo) => {
+    const evento = (campo.type === "checkbox" || campo.tagName === "SELECT") ? "change" : "input";
+    campo.addEventListener(evento, () => validarCampo(campo));
+    campo.addEventListener("blur", () => validarCampo(campo));
+  });
+
+  // Contador de caracteres del mensaje
+  const mensaje = document.getElementById("mensaje");
+  const contador = document.getElementById("mensajeCount");
+  mensaje.addEventListener("input", () => { contador.textContent = mensaje.value.length; });
+
+  // Envío
+  const resultado = document.getElementById("formResultado");
+  const boton = document.getElementById("btnEnviar");
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    resultado.innerHTML = "";
+
+    const validos = campos.map(validarCampo);
+    if (validos.includes(false)) {
+      campos[validos.indexOf(false)].focus();
+      resultado.innerHTML =
+        '<div class="alert alert-danger alert-exito" role="alert">' +
+        '<i class="fa-solid fa-circle-exclamation me-2" aria-hidden="true"></i>' +
+        'Revisa los campos marcados en rojo antes de enviar.</div>';
+      return;
+    }
+
+    // Simulación de envío (sin servidor): muestra confirmación sin recargar
+    const textoOriginal = boton.querySelector("span").textContent;
+    boton.disabled = true;
+    boton.querySelector("span").textContent = "Enviando...";
+
+    setTimeout(() => {
+      const nombre = document.getElementById("nombre").value.trim().split(" ")[0];
+      resultado.innerHTML =
+        '<div class="alert alert-success alert-exito" role="alert">' +
+        '<i class="fa-solid fa-circle-check me-2" aria-hidden="true"></i>' +
+        `¡Gracias, ${nombre}! Recibimos tu mensaje y te responderemos a tu correo institucional.</div>`;
+
+      form.reset();
+      contador.textContent = "0";
+      campos.forEach((c) => {
+        c.classList.remove("is-valid", "is-invalid");
+        c.removeAttribute("aria-invalid");
+      });
+      boton.disabled = false;
+      boton.querySelector("span").textContent = textoOriginal;
+    }, 900);
+  });
+}
+
+// =========================================================
+// 5. FILTRADO INTERACTIVO DE PROYECTOS (MANIPULACIÓN DEL DOM)
+// =========================================================
+const botonesFiltro = document.querySelectorAll(".filter-btn");
+const tarjetasProyectos = document.querySelectorAll(".proyecto-card");
+
+if (botonesFiltro.length > 0) {
+  botonesFiltro.forEach((boton) => {
+    boton.addEventListener("click", () => {
+      // Remover clase 'active' de todos los botones y activarla en el pulsado
+      botonesFiltro.forEach((b) => b.classList.remove("active"));
+      boton.classList.add("active");
+
+      const categoriaSeleccionada = boton.getAttribute("data-filter");
+
+      // Mostrar u ocultar las tarjetas según la categoría
+      tarjetasProyectos.forEach((tarjeta) => {
+        const categoriaTarjeta = tarjeta.getAttribute("data-category");
+        const mostrar = categoriaSeleccionada === "todos" || categoriaTarjeta === categoriaSeleccionada;
+        
+        tarjeta.style.display = mostrar ? "block" : "none";
+      });
+    });
+  });
+}

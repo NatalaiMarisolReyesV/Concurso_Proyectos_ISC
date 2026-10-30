@@ -32,7 +32,7 @@
   <!-- Ícono -->
   <link rel="icon" href="./assets/img/logotsj.png" type="image/png">
 
-  <!-- Conexión anticipada a recursos externos (mejora el rendimiento) -->
+  <!-- Conexión anticipada a recursos externos -->
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -72,9 +72,12 @@
         <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
           <li class="nav-item"><a class="nav-link" href="#inicio">Inicio</a></li>
           <li class="nav-item"><a class="nav-link" href="#programa">Programa</a></li>
+          <li class="nav-item"><a class="nav-link" href="#labs">Laboratorios</a></li>
+          <li class="nav-item"><a class="nav-link" href="#proyectos-anteriores">Proyectos</a></li>
           <li class="nav-item"><a class="nav-link" href="#sede">Sede</a></li>
           <li class="nav-item"><a class="nav-link" href="#organizadores">Organizadores</a></li>
           <li class="nav-item"><a class="nav-link" href="#aliados">Aliados</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
           <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
             <button id="themeToggle" class="theme-toggle" type="button"
                     aria-label="Cambiar entre modo claro y modo oscuro" aria-pressed="false">
@@ -108,7 +111,6 @@
           <h2 class="h3 fw-bold text-white mb-0" id="titulo-contador">El evento comienza en:</h2>
         </div>
 
-        <!-- Cajas de tiempo -->
         <div class="col-6 col-md-2 mb-3 mb-md-0">
           <div class="countdown-box">
             <span id="cd-days">00</span>
@@ -155,7 +157,6 @@
       </div>
 
       <div class="row align-items-center g-5">
-        <!-- Columna izquierda: texto e íconos -->
         <div class="col-lg-6">
           <h3 class="mb-3" style="color: var(--primary);">Soluciones tecnológicas a problemáticas reales</h3>
           <p class="lead text-muted mb-4">
@@ -195,7 +196,6 @@
           </ul>
         </div>
 
-        <!-- Columna derecha: contenido complementario -->
         <div class="col-lg-6">
           <aside class="card p-5 border-0 text-center shadow-lg" aria-labelledby="titulo-mision" style="background-color: var(--primary); color: white; border-radius: var(--radius);">
             <i class="fa-solid fa-lightbulb fa-4x mb-4" style="color: var(--accent);" aria-hidden="true"></i>
@@ -206,7 +206,6 @@
 
             <hr class="border-light opacity-25 w-75 mx-auto my-4">
 
-            <!-- Datos rápidos -->
             <div class="d-flex justify-content-evenly mt-3">
               <div>
                 <p class="h2 mb-0 fw-bold" style="color: var(--accent);">XX</p>
@@ -261,18 +260,18 @@
     <div class="container">
       <div class="section-title">
         <h2 id="titulo-labs">Distribución de Laboratorios | XX Concurso de Proyectos de Innovación</h2>
-        <p>La ceremonia de premiación a los ganadores de los tres primeros lugares del XIX Concurso de Proyectos de Innovación se llevará a cabo este 22 de Mayo de 2026 a las 10:00 a. m. en las instalaciones del <strong>Domo / Auditorio. </strong> Domo / Auditorio. ¡Acompáñanos a reconocer el talento y la innovación de nuestra comunidad!</p>
+        <p>La ceremonia de premiación a los ganadores de los tres primeros lugares del XIX Concurso de Proyectos de Innovación se llevará a cabo en las instalaciones del <strong>Domo / Auditorio</strong>. ¡Acompáñanos a reconocer el talento y la innovación de nuestra comunidad!</p>
       </div>
       <div class="row g-4">
         <div class="col-md-6">
           <article class="card lab-card p-3 text-center h-100">
-            <img src="assets/img/labs/proximamente.png" class="img-fluid mb-3" alt="Distribución de laboratorios del turno matutino, próximamente">
+            <img src="assets/img/labs/proximamente.png" loading="lazy" class="img-fluid mb-3" alt="Distribución de laboratorios del turno matutino, próximamente">
             <h3 class="h5">Matutino</h3>
           </article>
         </div>
         <div class="col-md-6">
           <article class="card lab-card p-3 text-center h-100">
-            <img src="assets/img/labs/proximamente.png" class="img-fluid mb-3" alt="Distribución de laboratorios del turno vespertino, próximamente">
+            <img src="assets/img/labs/proximamente.png" loading="lazy" class="img-fluid mb-3" alt="Distribución de laboratorios del turno vespertino, próximamente">
             <h3 class="h5">Vespertino</h3>
           </article>
         </div>
@@ -280,8 +279,49 @@
     </div>
   </section>
 
+  <!-- PROYECTOS DESTACADOS (INTERACTIVA) -->
+  <section id="proyectos-anteriores" class="bg-white" aria-labelledby="titulo-proyectos">
+    <div class="container">
+      <div class="section-title">
+        <h2 id="titulo-proyectos">Proyectos Destacados</h2>
+        <p>Explora algunas de las propuestas innovadoras desarrolladas por las y los estudiantes de ISC.</p>
+      </div>
+
+      <div class="d-flex justify-content-center flex-wrap gap-2 mb-5" role="toolbar" aria-label="Filtro de categorías">
+        <button type="button" class="btn btn-outline-primary active filter-btn" data-filter="todos">Todos</button>
+        <button type="button" class="btn btn-outline-primary filter-btn" data-filter="ia">Inteligencia Artificial</button>
+        <button type="button" class="btn btn-outline-primary filter-btn" data-filter="web">Web y Móvil</button>
+        <button type="button" class="btn btn-outline-primary filter-btn" data-filter="iot">IoT y Hardware</button>
+      </div>
+
+      <div class="row g-4" id="contenedorProyectos">
+        <div class="col-md-6 col-lg-4 proyecto-card" data-category="ia">
+          <article class="card h-100 p-4">
+            <span class="badge bg-primary w-auto align-self-start mb-2">IA & Computación Visual</span>
+            <h3 class="h5">Clasificador de Residuos Automatizado</h3>
+            <p class="text-muted small">Red neuronal convolucional entrenada para clasificar material reciclable en tiempo real con Raspberry Pi.</p>
+          </article>
+        </div>
+        <div class="col-md-6 col-lg-4 proyecto-card" data-category="web">
+          <article class="card h-100 p-4">
+            <span class="badge bg-primary w-auto align-self-start mb-2">Web</span>
+            <h3 class="h5">Plataforma de Tutorías TSJ</h3>
+            <p class="text-muted small">Sistema web progresivo para la gestión de tutorías y seguimiento del aprovechamiento estudiantil.</p>
+          </article>
+        </div>
+        <div class="col-md-6 col-lg-4 proyecto-card" data-category="iot">
+          <article class="card h-100 p-4">
+            <span class="badge bg-primary w-auto align-self-start mb-2">IoT</span>
+            <h3 class="h5">Monitoreo de Cultivos Urbanos</h3>
+            <p class="text-muted small">Sensores ESP32 con microcontroladores que monitorean humedad y nutrientes enviando métricas a la nube.</p>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- SEDE DEL EVENTO -->
-  <section id="sede" class="bg-white" aria-labelledby="titulo-sede">
+  <section id="sede" aria-labelledby="titulo-sede">
     <div class="container">
       <div class="section-title">
         <h2 id="titulo-sede">Sede del Evento</h2>
@@ -293,7 +333,8 @@
           <h3 class="h4">Mapa de la Unidad Académica</h3>
           <p>Edificio L, sede del evento, perteneciente a la Academia de Ingeniería en Sistemas Computacionales.</p>
           <img src="./assets/img/labs-ubicacion.jpg"
-               alt="Plano de la sede del evento"
+               loading="lazy"
+               alt="Plano de la sede del evento en Edificio L"
                class="img-fluid rounded shadow-sm w-100">
         </div>
 
@@ -324,7 +365,7 @@
       <div class="row g-4">
         <div class="col-sm-6 col-lg-3">
           <article class="card person-card">
-            <img src="https://scontent-qro1-2.xx.fbcdn.net/v/t39.30808-1/458610495_10230659795496885_6108370343858437953_n.jpg?stp=c103.31.386.386a_dst-jpg_tt6&cstp=mx386x386&ctp=s200x200&_nc_cat=111&ccb=1-7&_nc_sid=e99d92&_nc_ohc=ogxznYdRAUwQ7kNvwH07oHF&_nc_oc=AdoO2y3KmzgJyrTixH-krhy8RBCL4NfFndrZ-xKG4-V5qZxx9kej9Me0O3IM2MZjF3o&_nc_zt=24&_nc_ht=scontent-qro1-2.xx&_nc_gid=etByCok0QyoZPJYMR4avDQ&_nc_ss=7b2a8&oh=00_AQMlFB3XwhnBQlvaLSQB_dMkmV4904NtB9L09f--NDk-1Q&oe=6ADBEBA6" class="w-100" alt="Fotografía de Nancy Ruiz Monroy">
+            <img src="./assets/img/c0rd1.png" loading="lazy" class="w-100" alt="Fotografía de Nancy Ruiz Monroy">
             <div class="card-body text-center">
               <h3 class="h6">Nancy Ruiz Monroy</h3>
               <small>Coordinadora</small>
@@ -334,7 +375,7 @@
 
         <div class="col-sm-6 col-lg-3">
           <article class="card person-card">
-            <img src="https://scontent-qro3-1.xx.fbcdn.net/v/t39.30808-6/469069327_10163217223923760_109229725857119630_n.jpg?stp=dst-jpg_tt6&cstp=mx480x480&ctp=s480x480&_nc_cat=100&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=8Ta9qShLxQsQ7kNvwHkcDrY&_nc_oc=Adr-13oxHIoo-Jx3K3fCz-b9GlBZS0ajLWE3D3U9IydSCqk6LAhu2b9y4LikC_o0XxM&_nc_zt=23&_nc_ht=scontent-qro3-1.xx&_nc_gid=iJsxyGkT6Fhysah1jj1PRQ&_nc_ss=7b2a8&oh=00_AQMQ2qG1fB2SGrc0ip61Ut_5vK3QpN3f01StLEVThXj5AA&oe=6ADBDC9B" class="w-100" alt="Fotografía de Quinatzin Reyes Gómez">
+            <img src="./assets/img/c0l4.png" loading="lazy" class="w-100" alt="Fotografía de Quinatzin Reyes Gómez">
             <div class="card-body text-center">
               <h3 class="h6">Quinatzin Reyes Gómez</h3>
               <small>Coordinador</small>
@@ -344,7 +385,7 @@
 
         <div class="col-sm-6 col-lg-3">
           <article class="card person-card">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTS8NE9LM7TvvDi4sld6PGAmuStd6QfArTsyuqfPSHVEw&s=10" class="w-100" alt="Fotografía de León Miguel Ramos Corchado">
+            <img src="./assets/img/UM.png" loading="lazy" class="w-100" alt="Fotografía de León Miguel Ramos Corchado">
             <div class="card-body text-center">
               <h3 class="h6">León Miguel Ramos Corchado</h3>
               <small>Coordinador</small>
@@ -354,40 +395,10 @@
 
         <div class="col-sm-6 col-lg-3">
           <article class="card person-card">
-            <img src="https://scontent-qro1-1.xx.fbcdn.net/v/t39.30808-6/347629271_194538283519200_3500123676656223234_n.jpg?stp=dst-jpg_tt6&cstp=mx959x960&ctp=s959x960&_nc_cat=105&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=orRd6BK8FI0Q7kNvwG0t9MG&_nc_oc=Adr3en_f-3CuvsCXXUJcDzY_IdwctIdaSRw3Hu-hlTuSv7qTfRiCUe-HE2U3Ae7mLN0&_nc_zt=23&_nc_ht=scontent-qro1-1.xx&_nc_gid=JanFxEQhnvlmxkciUPn05A&_nc_ss=7b2a8&oh=00_AQOv552nOq32cMGzawlCpHznqbSBUOWbkATRQ2uCwS7DoA&oe=6ADBEDEB" class="w-100" alt="Fotografía de Irma Toscano Barajas">
+            <img src="./assets/img/UF.png" loading="lazy" class="w-100" alt="Fotografía de Irma Toscano Barajas">
             <div class="card-body text-center">
               <h3 class="h6">Irma Toscano Barajas</h3>
               <small>Colaboradora</small>
-            </div>
-          </article>
-        </div>
-
-        <div class="col-sm-6 col-lg-3">
-          <article class="card person-card">
-            <img src="https://scontent-qro1-2.xx.fbcdn.net/v/t39.30808-6/813976436_938393469326892_8687484536586468731_n.jpg?stp=dst-jpg_tt6&cstp=mx2048x2041&ctp=s2048x2041&_nc_cat=111&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=VR0E2IxKcOAQ7kNvwFvQz3O&_nc_oc=AdqGXQ5YNK08JhOk0U4viP6x3Xm6NM_7R6tl2zoVzCvnVFisKXjOTa4IdvcapHYV1J0&_nc_zt=23&_nc_ht=scontent-qro1-2.xx&_nc_gid=1dDvcCXs8mg23aBEvjTfAA&_nc_ss=7b2a8&oh=00_AQOI_0zbtaHuk1w4dAzoTFY6_qP9FgmaoqVMXGSRMJuu9A&oe=6ADBE83C" class="w-100" alt="Fotografía de José Luis Garcia Cerpas">
-            <div class="card-body text-center">
-              <h3 class="h6">José Luis Garcia Cerpas</h3>
-              <small>Colaborador</small>
-            </div>
-          </article>
-        </div>
-
-        <div class="col-sm-6 col-lg-3">
-          <article class="card person-card">
-            <img src="https://scontent.fmex9-1.fna.fbcdn.net/v/t39.30808-6/649702332_26236621269313168_1634922824665613780_n.jpg?stp=dst-jpg_tt6&cstp=mx720x720&ctp=s720x720&_nc_cat=108&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=a5f93a&_nc_ohc=mofZKfEWGRYQ7kNvwGzHjBk&_nc_oc=Adpf4u_THlu2H73uLp3yVaJfYH7fmMcaOGWYh_adRYJH_D0lbeHGIKFvetXZuVS_ieQ&_nc_zt=23&_nc_ht=scontent.fmex9-1.fna&_nc_gid=tfwTGvQaTZ39PPSr0xOtlQ&_nc_ss=7b2a8&oh=00_AQNoeMuHPREYx9dCnqBDND5FcawKA0cMSPX6EB55UC0OLA&oe=6ADC00B8" class="w-100" alt="Fotografía de Fabian Gonzalez Torres">
-            <div class="card-body text-center">
-              <h3 class="h6">Fabian Gonzalez Torres</h3>
-              <small>Colaborador</small>
-            </div>
-          </article>
-        </div>
-
-        <div class="col-sm-6 col-lg-3">
-          <article class="card person-card">
-            <img src="https://scontent-qro3-1.xx.fbcdn.net/v/t39.30808-6/474667810_1639573716933976_3592236700881100202_n.jpg?stp=dst-jpg_tt6&cstp=mx1533x2048&ctp=s1533x2048&_nc_cat=109&ccb=1-7&_nc_sid=833d8c&_nc_ohc=pjpH9zjKBBgQ7kNvwFp8dqi&_nc_oc=Adr-tPYsq44WFyezk4h3i4qLzGFEdJSQ9p2UhVRHodzAfNDUV7J6wjKQfdJn9l6Su4I&_nc_zt=23&_nc_ht=scontent-qro3-1.xx&_nc_gid=YpHmcPE5c-Ix8WkhoYHzjA&_nc_ss=7b2a8&oh=00_AQNM1gKSOtPYijWQVR4r445YHc8-aui5u34Yps_b8SUOjw&oe=6ADBD623" class="w-100" alt="Fotografía de Rigoberto Cardenas Larios">
-            <div class="card-body text-center">
-              <h3 class="h6">Rigoberto Cardenas Larios</h3>
-              <small>Colaborador</small>
             </div>
           </article>
         </div>
@@ -404,16 +415,76 @@
       </div>
       <div class="row g-4 align-items-center justify-content-center">
         <div class="col-6 col-md-3 text-center">
-          <img src="./assets/img/logos/86854456.png" class="img-fluid" alt="SoftServe">
+          <img src="./assets/img/logos/86854456.png" loading="lazy" class="img-fluid" alt="Logotipo SoftServe">
         </div>
         <div class="col-6 col-md-3 text-center">
-          <img src="./assets/img/logos/Recurso 1.png" class="img-fluid" alt="Zegnal Consulting">
+          <img src="./assets/img/logos/Recurso 1.png" loading="lazy" class="img-fluid" alt="Logotipo Zegnal Consulting">
         </div>
         <div class="col-6 col-md-3 text-center">
-          <img src="./assets/img/logos/34243242.png" class="img-fluid" alt="CodeNation">
+          <img src="./assets/img/logos/34243242.png" loading="lazy" class="img-fluid" alt="Logotipo CodeNation">
         </div>
         <div class="col-6 col-md-3 text-center">
-          <img src="./assets/img/logos/47993983.png" class="img-fluid" alt="Secretaría de Educación Jalisco">
+          <img src="./assets/img/logos/47993983.png" loading="lazy" class="img-fluid" alt="Logotipo Secretaría de Educación Jalisco">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FORMULARIO DE CONTACTO Y REGISTRO -->
+  <section id="contacto" aria-labelledby="titulo-contacto">
+    <div class="container">
+      <div class="section-title">
+        <h2 id="titulo-contacto">Contacto y Registro</h2>
+        <p>Escribe tus dudas o inquietudes sobre el concurso utilizando tu correo institucional.</p>
+      </div>
+
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <form id="contactForm" class="card p-4 p-md-5" novalidate>
+            <div id="formResultado" class="mb-3"></div>
+
+            <div class="mb-3">
+              <label for="nombre" class="form-label fw-semibold">Nombre Completo</label>
+              <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Ej. Juan Pérez" required>
+              <div class="invalid-feedback"></div>
+            </div>
+
+            <div class="mb-3">
+              <label for="correo" class="form-label fw-semibold">Correo Institucional</label>
+              <input type="email" class="form-control" id="correo" name="correo" placeholder="ejemplo@zapopan.tecmm.edu.mx" required>
+              <div class="invalid-feedback"></div>
+            </div>
+
+            <div class="mb-3">
+              <label for="tipo" class="form-label fw-semibold">Tipo de Consulta</label>
+              <select class="form-select" id="tipo" name="tipo" required>
+                <option value="">Selecciona una opción...</option>
+                <option value="registro">Registro de Proyecto</option>
+                <option value="dudas">Dudas de Categorías</option>
+                <option value="general">Información General</option>
+              </select>
+              <div class="invalid-feedback"></div>
+            </div>
+
+            <div class="mb-3">
+              <label for="mensaje" class="form-label fw-semibold">Mensaje</label>
+              <textarea class="form-control" id="mensaje" name="mensaje" rows="4" placeholder="Escribe tu mensaje aquí..." required></textarea>
+              <div class="d-flex justify-content-between mt-1">
+                <div class="invalid-feedback d-block"></div>
+                <small class="text-muted"><span id="mensajeCount">0</span> caracteres</small>
+              </div>
+            </div>
+
+            <div class="mb-4 form-check">
+              <input type="checkbox" class="form-check-input" id="aviso" name="aviso" required>
+              <label class="form-check-label small" for="aviso">Acepto los términos del aviso de privacidad institucional.</label>
+              <div class="invalid-feedback"></div>
+            </div>
+
+            <button type="submit" id="btnEnviar" class="btn btn-primary w-100 py-2">
+              <i class="fa-solid fa-paper-plane me-2" aria-hidden="true"></i><span>Enviar Mensaje</span>
+            </button>
+          </form>
         </div>
       </div>
     </div>
@@ -446,8 +517,10 @@
           <li><a href="#inicio">Inicio</a></li>
           <li><a href="#programa">Programa</a></li>
           <li><a href="#labs">Laboratorios</a></li>
+          <li><a href="#proyectos-anteriores">Proyectos</a></li>
           <li><a href="#organizadores">Organizadores</a></li>
           <li><a href="#aliados">Empresas aliadas</a></li>
+          <li><a href="#contacto">Contacto</a></li>
         </ul>
       </nav>
 
