@@ -1,3 +1,6 @@
+/* =========================================================
+   VARIABLES
+   ========================================================= */
 :root {
   /* Paleta oficial extraída de tecmm.edu.mx */
   --primary: #33157A;    /* Morado intenso institucional */
@@ -6,24 +9,90 @@
   --dark: #1f1f1f;
   --gray: #6c757d;
   --bg: #f8f9fb;         /* Fondo gris muy claro */
+  --surface: #ffffff;
   --radius: 12px;
 }
+
+/* =========================================================
+   BASE
+   ========================================================= */
+html { scroll-behavior: smooth; scroll-padding-top: 80px; }
 
 body {
   font-family: 'Inter', system-ui, sans-serif;
   background: var(--bg);
   color: var(--dark);
   line-height: 1.7;
+  overflow-x: hidden;
 }
+
+img { max-width: 100%; height: auto; }
 
 h1, h2, h3, h4 { font-weight: 800; letter-spacing: -0.5px; }
 
-/* ===== NAVBAR ===== */
-.navbar {
-  backdrop-filter: blur(10px);
+/* Foco visible para teclado (accesibilidad) */
+:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 4px;
 }
 
-/* ===== HERO ===== */
+/* =========================================================
+   NAVBAR
+   ========================================================= */
+.navbar {
+  padding: .75rem 0;
+  backdrop-filter: blur(10px);
+  transition: background-color .3s ease, box-shadow .3s ease;
+}
+.navbar.scrolled {
+  background: rgba(51, 21, 122, .96);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, .25);
+}
+.navbar-collapse.show,
+.navbar-collapse.collapsing {
+  background: rgba(51, 21, 122, .97);
+  border-radius: var(--radius);
+  padding: 1rem;
+  margin-top: .5rem;
+}
+.navbar .nav-link {
+  position: relative;
+  font-weight: 600;
+  transition: color .2s ease;
+}
+.navbar .nav-link::after {
+  content: "";
+  position: absolute;
+  left: .5rem; right: .5rem; bottom: .2rem;
+  height: 2px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transition: transform .3s ease;
+}
+.navbar .nav-link:hover::after,
+.navbar .nav-link:focus-visible::after { transform: scaleX(1); }
+
+/* Botón de tema */
+.theme-toggle {
+  width: 42px; height: 42px;
+  display: inline-flex; align-items: center; justify-content: center;
+  color: #fff;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, .4);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color .3s ease, transform .3s ease, border-color .3s ease;
+}
+.theme-toggle:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  transform: rotate(20deg) scale(1.08);
+}
+
+/* =========================================================
+   HERO
+   ========================================================= */
 .hero {
   min-height: 90vh;
   background: url('../img/banner.png') center/cover no-repeat;
@@ -41,7 +110,21 @@ h1, h2, h3, h4 { font-weight: 800; letter-spacing: -0.5px; }
 
 .hero h1 { font-size: clamp(2.4rem, 4vw, 3.8rem); }
 
-/* ===== CUENTA REGRESIVA ===== */
+.hero-badge {
+  display: inline-block;
+  background: rgba(229, 46, 113, .9);
+  color: #fff;
+  font-weight: 600;
+  font-size: .95rem;
+  padding: .45rem 1rem;
+  border-radius: 50px;
+  margin-bottom: 1.25rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, .25);
+}
+
+/* =========================================================
+   CUENTA REGRESIVA
+   ========================================================= */
 .countdown-section {
   background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
   padding: 3rem 0;
@@ -57,6 +140,11 @@ h1, h2, h3, h4 { font-weight: 800; letter-spacing: -0.5px; }
   padding: 1.2rem 0.5rem;
   backdrop-filter: blur(10px);
   color: white;
+  transition: transform .3s ease, background-color .3s ease;
+}
+.countdown-box:hover {
+  transform: translateY(-4px) scale(1.04);
+  background: rgba(255, 255, 255, .12);
 }
 
 .countdown-box span {
@@ -77,7 +165,9 @@ h1, h2, h3, h4 { font-weight: 800; letter-spacing: -0.5px; }
   opacity: 0.9;
 }
 
-/* ===== BOTONES ===== */
+/* =========================================================
+   BOTONES
+   ========================================================= */
 .btn-primary {
   background: var(--accent);
   border: none;
@@ -91,8 +181,11 @@ h1, h2, h3, h4 { font-weight: 800; letter-spacing: -0.5px; }
   transform: translateY(-3px);
   box-shadow: 0 10px 25px rgba(0,0,0,.25);
 }
+.btn-primary:active { transform: translateY(-1px) scale(.98); }
 
-/* ===== SECCIONES ===== */
+/* =========================================================
+   SECCIONES
+   ========================================================= */
 section { padding: 5rem 0; }
 
 .section-title {
@@ -101,33 +194,51 @@ section { padding: 5rem 0; }
 }
 .section-title p { max-width: 720px; margin: auto; color: var(--gray); }
 
-/* ===== CARDS ===== */
+.section-title h2::after {
+  content: "";
+  display: block;
+  width: 70px; height: 4px;
+  margin: .75rem auto 0;
+  background: var(--accent);
+  border-radius: 4px;
+}
+
+/* =========================================================
+   CARDS
+   ========================================================= */
 .card {
   border: none;
   border-radius: var(--radius);
   box-shadow: 0 10px 30px rgba(0,0,0,.08);
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 40px rgba(51, 21, 122, .2);
 }
 
-/* ===== PROGRAMA ===== */
+/* =========================================================
+   PROGRAMA
+   ========================================================= */
 .program-time {
   font-weight: 700;
   color: var(--primary);
 }
 
-/* ===== LABS ===== */
+/* =========================================================
+   LABORATORIOS
+   ========================================================= */
 .lab-card img {
   border-radius: 12px;
   border: 2px solid #e6e6e6;
 }
 
-/* ===== PERSONAS ===== */
+/* =========================================================
+   PERSONAS
+   ========================================================= */
 .person-card {
   border: 1px solid rgba(0,0,0,0.05);
-  transition: transform 0.3s ease;
   overflow: hidden;
-}
-.person-card:hover {
-  transform: translateY(-5px);
 }
 .person-card img {
   height: 250px;
@@ -135,7 +246,9 @@ section { padding: 5rem 0; }
   object-position: top;
 }
 
-/* ===== CTA ===== */
+/* =========================================================
+   CTA
+   ========================================================= */
 .cta {
   background: linear-gradient(90deg, var(--primary), #7f54d8);
   color: #fff;
@@ -144,10 +257,43 @@ section { padding: 5rem 0; }
   padding: 4rem 2rem;
 }
 
-/* ===== FOOTER ===== */
+/* =========================================================
+   FOOTER
+   ========================================================= */
 footer {
   background: #111;
   color: #ddd;
 }
-footer a { color: #bbb; text-decoration: none; }
-footer a:hover { color: #fff; }
+footer a {
+  color: #bbb;
+  text-decoration: none;
+  display: inline-block;
+  transition: color .2s ease, transform .2s ease;
+}
+footer a:hover { color: #fff; transform: translateX(3px); }
+
+/* =========================================================
+   MODO OSCURO
+   ========================================================= */
+[data-bs-theme="dark"] {
+  --bg: #12101f;
+  --dark: #eceaf7;
+  --gray: #a9a6c0;
+  --surface: #1b1830;
+}
+[data-bs-theme="dark"] body { background: var(--bg); color: var(--dark); }
+[data-bs-theme="dark"] .bg-white { background-color: var(--surface) !important; }
+[data-bs-theme="dark"] .card {
+  background-color: var(--surface);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, .45);
+}
+[data-bs-theme="dark"] .card:hover { box-shadow: 0 18px 40px rgba(127, 84, 216, .3); }
+[data-bs-theme="dark"] .text-muted { color: var(--gray) !important; }
+[data-bs-theme="dark"] #bienvenida h3 { color: #c3adff !important; }
+[data-bs-theme="dark"] .program-time { color: #c3adff; }
+[data-bs-theme="dark"] .lab-card img { border-color: #3a3658; }
+[data-bs-theme="dark"] #aliados img {
+  background: #fff;
+  padding: .75rem;
+  border-radius: var(--radius);
+}
