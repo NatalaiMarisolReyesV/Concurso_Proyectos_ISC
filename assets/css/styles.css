@@ -325,3 +325,41 @@ footer a:hover { color: #fff; transform: translateX(3px); }
 /* Dirección en el footer sin estilo de cursiva */
 footer address { margin-bottom: 0; }
 footer address p { margin-bottom: .5rem; }
+
+
+/* =========================================================
+   FORMULARIO DE CONTACTO
+   ========================================================= */
+#contactForm .form-control,
+#contactForm .form-select {
+  border-radius: var(--radius);
+  padding: .75rem 1rem;
+  transition: border-color .2s ease, box-shadow .2s ease;
+}
+#contactForm .form-control:focus,
+#contactForm .form-select:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 .25rem rgba(229, 46, 113, .2);
+}
+#contactForm .form-check-input:checked {
+  background-color: var(--accent);
+  border-color: var(--accent);
+}
+#contactForm:hover { transform: none; }
+
+#btnEnviar:disabled { opacity: .7; transform: none; cursor: wait; }
+
+.alert-exito {
+  border-radius: var(--radius);
+  animation: aparecer .4s ease;
+}
+@keyframes aparecer {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Respeta a quien prefiere menos movimiento */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  html { scroll-behavior: auto; }
+}
